@@ -29,7 +29,6 @@ rm -rf feeds/luci/applications/luci-app-openclash
 
 # 删除 LEDE 自带代理核心，使用 PassWall 官方依赖
 
-rm -rf feeds/packages/net/v2ray-geodata
 rm -rf feeds/packages/net/xray-core
 rm -rf feeds/packages/net/sing-box
 rm -rf feeds/packages/net/hysteria
