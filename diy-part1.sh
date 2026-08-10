@@ -15,5 +15,4 @@ echo 'src-git openclash https://github.com/vernesong/OpenClash.git' >> feeds.con
 # 添加 Clashoo
 echo 'src-git clashoo https://github.com/kenzok8/openwrt-clashoo.git' >> feeds.conf.default
 # 晶晨宝盒
-svn co 
-https://github.com/ophub/luci-app-amlogic/trunk/luci-app-amlogic package/luci-app-amlogic
+git clone --depth=1 https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
