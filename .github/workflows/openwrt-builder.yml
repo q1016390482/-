@@ -343,4 +343,5 @@ jobs:
           Kernel: ${{ inputs.kernel }}
         files: |
           /workdir/n1-output/*.img.gz
+          openwrt/bin/targets/amlogic/mesongx/*
 
