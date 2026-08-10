@@ -18,3 +18,23 @@
 
 # Modify hostname
 #sed -i 's/OpenWrt/P3TERX-Router/g' package/base-files/files/bin/config_generate
+#!/bin/bash
+
+# 删除 LEDE 自带 PassWall
+rm -rf feeds/luci/applications/luci-app-passwall
+
+
+# 删除 LEDE 自带 OpenClash（如果存在）
+rm -rf feeds/luci/applications/luci-app-openclash
+
+# 删除 LEDE 自带代理核心，使用 PassWall 官方依赖
+
+rm -rf feeds/packages/net/v2ray-geodata
+rm -rf feeds/packages/net/xray-core
+rm -rf feeds/packages/net/sing-box
+rm -rf feeds/packages/net/hysteria
+rm -rf feeds/packages/net/naiveproxy
+rm -rf feeds/packages/net/shadowsocks-rust
+rm -rf feeds/packages/net/tcping
+rm -rf feeds/packages/net/chinadns-ng
+rm -rf feeds/packages/net/dns2socks
