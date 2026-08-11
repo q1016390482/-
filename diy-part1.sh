@@ -1,4 +1,13 @@
 #!/bin/bash
+# Git稀疏克隆，只克隆指定目录到本地
+function git_sparse_clone() {
+  branch="$1" repourl="$2" && shift 2
+  git clone --depth=1 -b $branch --single-branch --filter=blob:none --sparse $repourl
+  repodir=$(echo $repourl | awk -F '/' '{print $(NF)}')
+  cd $repodir && git sparse-checkout set $@
+  mv -f $@ ../package
+  cd .. && rm -rf $repodir
+}
 
 # 删除旧 PassWall feed
 sed -i '/passwall/d' feeds.conf.default
@@ -11,22 +20,18 @@ sed -i '/openclash/d'
 rm -rf feeds/luci/applications/luci-app-passwall
 rm -rf feeds/luci/applications/luci-app-openclash
 rm -rf feeds/luci/applications/luci-app-mosdns
-
+rm -rf feeds/packages/net/mosdns
 
 # 添加 PassWall 官方仓库
 
-echo 'src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt-passwall-packages.git;main' >> feeds.conf.default
-
-echo 'src-git passwall_luci https://github.com/Openwrt-Passwall/openwrt-passwall.git;main' >> feeds.conf.default
+git clone --depth=1 https://github.com/Openwrt-Passwall/openwrt-passwall-packages package/openwrt-passwall-packages
+git clone --depth=1 https://github.com/Openwrt-Passwall/openwrt-passwall package/openwrt-passwall
 
 
 # 添加 OpenClash 官方仓库
 
-echo 'src-git openclash https://github.com/vernesong/OpenClash.git' >> feeds.conf.default
+git clone --depth=1 https://github.com/vernesong/OpenClash package/luci-app-openclash
 
-# 添加 Clashoo
-
-echo 'src-git clashoo https://github.com/kenzok8/openwrt-clashoo.git' >> feeds.conf.default
 
 
 # 添加晶晨宝盒
