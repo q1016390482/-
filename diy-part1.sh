@@ -10,6 +10,7 @@ sed -i '/openclash/d'
 # 删除已经存在的旧包目录
 rm -rf feeds/luci/applications/luci-app-passwall
 rm -rf feeds/luci/applications/luci-app-openclash
+rm -rf feeds/luci/applications/luci-app-mosdns
 
 
 # 添加 PassWall 官方仓库
@@ -31,3 +32,4 @@ echo 'src-git clashoo https://github.com/kenzok8/openwrt-clashoo.git' >> feeds.c
 # 添加晶晨宝盒
 
 git clone --depth=1 https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
+git clone -b v5-lua --single-branch --depth 1 https://github.com/sbwml/luci-app-mosdns package/mosdns
