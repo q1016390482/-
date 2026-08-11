@@ -171,6 +171,7 @@ jobs:
         cd openwrt
 
         make defconfig
+        grep -E "CONFIG_PACKAGE_.*(passwall|openclash|clashoo)" .config || true
 
         make download -j8
 
