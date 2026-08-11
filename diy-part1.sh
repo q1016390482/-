@@ -1,8 +1,15 @@
 #!/bin/bash
 
-# 删除 LEDE 自带相关 feed，避免重复
+# 删除旧 PassWall feed
 sed -i '/passwall/d' feeds.conf.default
+
+# 删除旧 OpenClash feed
 sed -i '/openclash/d'
+
+
+# 删除已经存在的旧包目录
+rm -rf feeds/luci/applications/luci-app-passwall
+rm -rf feeds/luci/applications/luci-app-openclash
 
 
 # 添加 PassWall 官方仓库
@@ -14,8 +21,7 @@ echo 'src-git passwall_luci https://github.com/Openwrt-Passwall/openwrt-passwall
 
 # 添加 OpenClash 官方仓库
 
-echo 'src-git openclash https://github.com/vernesong/OpenClash.git;master' >> feeds.conf.default
-
+echo 'src-git openclash https://github.com/vernesong/OpenClash.git' >> feeds.conf.default
 
 # 添加 Clashoo
 
